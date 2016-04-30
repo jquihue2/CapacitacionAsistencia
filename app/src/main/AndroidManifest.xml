@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.paramonga.capacitacionasistencia" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Presentacion.an_presentacion"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Presentacion.an_login"
+            android:label="@string/title_activity_an_login"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Presentacion.an_afiliacion"
+            android:label="@string/title_activity_an_afiliacion"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Presentacion.an_capacitacion_activa"
+            android:label="@string/title_activity_an_capacitacion_activa"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Presentacion.an_sesiones"
+            android:label="@string/title_activity_an_sesiones"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Presentacion.an_colaborador"
+            android:label="@string/title_activity_an_colaborador"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Presentacion.an_colaborador_todo"
+            android:label="@string/title_activity_an_colaborador_todo"
+            android:screenOrientation="portrait">
+        </activity>
+    </application>
+
+</manifest>

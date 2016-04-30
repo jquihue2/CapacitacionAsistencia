@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Capacitacion Asistencia</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_an_login">Login</string>
+    <string name="title_activity_an_afiliacion">Afiliación</string>
+    <string name="title_activity_an_capacitacion_activa">Lista de capacitaciones activas</string>
+    <string name="title_activity_an_sesiones">Sesiones</string>
+    <string name="title_activity_an_colaborador">Lista de colaboradores</string>
+    <string name="mensaje_error_conexion">No tiene conexión</string>
+    <string name="title_activity_an_colaborador_todo">Lista de colaboradores</string>
+
+</resources>
