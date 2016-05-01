@@ -1,5 +1,7 @@
 package com.paramonga.capacitacionasistencia.Modelo;
 
+import java.util.List;
+
 /**
  * Created by jquihue on 11/08/2015.
  */
@@ -7,23 +9,19 @@ public class respuestaEn {
 
     public int estado;
     public String mensaje;
-    public String data;
+    public List<Usuario> data;
     public int totalRegistro;
 
     public respuestaEn() {
         super();
     }
 
-/*
-    public RespuestaEn() {
-        super();
-    }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
@@ -39,7 +37,7 @@ public class respuestaEn {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(List<Usuario> data) {
         this.data = data;
     }
 
@@ -50,5 +48,5 @@ public class respuestaEn {
     public void setTotalRegistro(int totalRegistro) {
         this.totalRegistro = totalRegistro;
     }
-    */
+
 }

@@ -138,26 +138,26 @@ public class funciones {
 
             respuesta.estado=json_data.getInt("estado");
             respuesta.mensaje=json_data.getString("mensaje");
-            respuesta.data=json_data.getJSONArray("data").toString();
+            //respuesta.data=json_data.getJSONArray("data").toString();
             respuesta.totalRegistro=json_data.getInt("totalRegistro");
         }
         catch (JSONException e)
         {
             respuesta.estado=3;
             respuesta.mensaje="Error de formato.";
-            respuesta.data="";
+            //respuesta.data="";
             respuesta.totalRegistro=0;
         }
         catch (java.net.MalformedURLException e) {
             respuesta.estado=3;
             respuesta.mensaje="Error de conexión al servidor; vuelva a intentarlo en un momento.";
-            respuesta.data="";
+            //respuesta.data="";
             respuesta.totalRegistro=0;
         }
         catch(Exception e){
             respuesta.estado=3;
             respuesta.mensaje="Error general de conexión.";
-            respuesta.data="";
+            //respuesta.data="";
             respuesta.totalRegistro=0;
         }
         finally {
@@ -211,7 +211,7 @@ public class funciones {
             }
         }
         catch(JSONException e){
-            Log.e("Errror JSONException en campo3Lista",e.getMessage());
+            Log.e("Errror JSONException",e.getMessage());
         }
         return respuesta;
     }

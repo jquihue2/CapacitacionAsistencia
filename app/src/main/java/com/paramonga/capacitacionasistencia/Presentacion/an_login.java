@@ -21,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.paramonga.capacitacionasistencia.Datos.RestLoginService;
+import com.paramonga.capacitacionasistencia.Datos.UsuarioRepositoryService;
 import com.paramonga.capacitacionasistencia.Modelo.respuestaEn;
 import com.paramonga.capacitacionasistencia.R;
 import com.paramonga.capacitacionasistencia.Utilitario.constantes;
@@ -64,7 +66,14 @@ public class an_login extends Activity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Validar usuario
+//http://www.agroparamonga.com/cap_asistencia/Afiliacion.jsp?funcion=2&cod_app=AP00000004&cod_usr=cnegre&iddispositivo=b06e1fa81f2fc185
+                Log.e("consulta","xD");
+                RestLoginService x=new RestLoginService(getApplicationContext());
+                x.validarUsuario("2","ad","ad","ad");
+                ;
+
+                //Log.e("iniciando","aqui");
+     /*           //Validar usuario
                 llMensajeError.setVisibility(View.INVISIBLE);
                 if(!funcion.conectado(consContext))
                 {
@@ -86,7 +95,7 @@ public class an_login extends Activity {
                 Log.e("Iniciando", "consulta a servidor");
                 usuario_Async u=new usuario_Async();
                 cod_usr=etUsuario.getText().toString();
-                u.execute(cod_usr,idDispositivo);
+                u.execute(cod_usr,idDispositivo);*/
                 //startActivity(new Intent(consContext,an_acceso.class));
 
             }
