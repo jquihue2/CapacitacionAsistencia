@@ -228,7 +228,7 @@ public class an_colaborador_todo extends Activity {
             respuestaEn lista_letras = funcion.ResultadoJson(constantes.IP_CAPC +"Capacitacion.jsp?funcion=4&nro_programacion=" + nro_programacion);
             List<campo3En> lista_letras_Array=new ArrayList<>();;
             try {
-                JSONArray data = new JSONArray(lista_letras.data);
+                JSONArray data = new JSONArray(lista_letras.getData());
                 //lista_letras_Array =new ArrayList<>();
                 campo3En item;
                 for(int i =0 ; i < data.length(); i++){
@@ -238,7 +238,7 @@ public class an_colaborador_todo extends Activity {
                 }
             }
             catch(JSONException e){
-                lista_letras.estado=0;lista_letras.mensaje="Error formato de resultado. " + e.getMessage();
+                //lista_letras.estado=0;lista_letras.mensaje="Error formato de resultado. " + e.getMessage();
             }
             // obtenemos todos los trabajadores por grupo
             listaColaborador_todoArray =new ArrayList<>();
@@ -246,7 +246,7 @@ public class an_colaborador_todo extends Activity {
                 respuestaEn lista_colaborador = funcion.ResultadoJson(constantes.IP_CAPC +"Capacitacion.jsp?funcion=5&nro_programacion=" + nro_programacion + "&letra=" + l.getCampo1());
 
                 try {
-                    JSONArray data = new JSONArray(lista_colaborador.data);
+                    JSONArray data = new JSONArray(lista_colaborador.getData());
 
                     colaborador_todoEn item;
                     for(int i =0 ; i < data.length(); i++){
@@ -265,7 +265,7 @@ public class an_colaborador_todo extends Activity {
                     }
                 }
                 catch(JSONException e){
-                    lista_colaborador.estado=0; lista_colaborador.mensaje="Error formato de resultado. " + e.getMessage();
+                    //lista_colaborador.estado=0; lista_colaborador.mensaje="Error formato de resultado. " + e.getMessage();
                 }
 
             }
@@ -313,7 +313,7 @@ public class an_colaborador_todo extends Activity {
         protected void onPostExecute(respuestaEn respuestaEn) {
             super.onPostExecute(respuestaEn);
             pd.dismiss();
-            if(respuestaEn.totalRegistro != 1){
+            /*if(respuestaEn.totalRegistro != 1){
                 funcion.messageBox(consContext,"Asistencia",respuestaEn.mensaje);
             }
             if(respuestaEn.estado==0){
@@ -331,7 +331,7 @@ public class an_colaborador_todo extends Activity {
 
             if(respuestaEn.estado==2){
                 colaboradoresAdaptador.actualizarAsistencia(itemSeleccionado);
-            }
+            }*/
 
         }
     }
@@ -392,7 +392,7 @@ public class an_colaborador_todo extends Activity {
         protected void onPostExecute(respuestaEn respuestaEn) {
             super.onPostExecute(respuestaEn);
             pd.dismiss();
-            if(respuestaEn.totalRegistro != 1){
+            /*if(respuestaEn.totalRegistro != 1){
                 funcion.messageBox(consContext,"Asistencia",respuestaEn.mensaje);
             }
             if(respuestaEn.estado==0){
@@ -410,7 +410,7 @@ public class an_colaborador_todo extends Activity {
 
             if(respuestaEn.estado==2){
                 colaboradoresAdaptador.actualizarAsistencia(itemSeleccionado);
-            }
+            }*/
 
         }
     }

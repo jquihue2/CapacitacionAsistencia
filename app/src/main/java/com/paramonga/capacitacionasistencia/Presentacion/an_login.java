@@ -5,24 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.Settings;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.paramonga.capacitacionasistencia.Datos.RestLoginService;
-import com.paramonga.capacitacionasistencia.Datos.UsuarioRepositoryService;
+import com.paramonga.capacitacionasistencia.Datos.afiliacionIn;
 import com.paramonga.capacitacionasistencia.Modelo.respuestaEn;
 import com.paramonga.capacitacionasistencia.R;
 import com.paramonga.capacitacionasistencia.Utilitario.constantes;
@@ -31,6 +26,13 @@ import com.paramonga.capacitacionasistencia.Utilitario.funciones;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class an_login extends Activity {
     Button btnAceptar;
@@ -66,37 +68,66 @@ public class an_login extends Activity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//http://www.agroparamonga.com/cap_asistencia/Afiliacion.jsp?funcion=2&cod_app=AP00000004&cod_usr=cnegre&iddispositivo=b06e1fa81f2fc185
-                Log.e("consulta","xD");
-                RestLoginService x=new RestLoginService(getApplicationContext());
-                x.validarUsuario("2","ad","ad","ad");
-                ;
+            //Validar usuario
+            llMensajeError.setVisibility(View.INVISIBLE);
+            if(!funcion.conectado(consContext))
+            {
+                llMensajeError.setVisibility(View.VISIBLE);
+                tvMensajeError.setText(R.string.mensaje_error_conexion);
+                etUsuario.requestFocus();
+                return;
+            }
+            if(etUsuario.getText().toString().isEmpty())
+            {
+                llMensajeError.setVisibility(View.VISIBLE);
+                tvMensajeError.setText("Ingrese un nombre de usuario.");
+                etUsuario.requestFocus();
+                return;
+            }
+            InputMethodManager imm=(InputMethodManager)getSystemService(consContext.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(etUsuario.getWindowToken(),0);
 
-                //Log.e("iniciando","aqui");
-     /*           //Validar usuario
-                llMensajeError.setVisibility(View.INVISIBLE);
-                if(!funcion.conectado(consContext))
-                {
-                    llMensajeError.setVisibility(View.VISIBLE);
-                    tvMensajeError.setText(R.string.mensaje_error_conexion);
-                    etUsuario.requestFocus();
-                    return;
-                }
-                if(etUsuario.getText().toString().isEmpty())
-                {
-                    llMensajeError.setVisibility(View.VISIBLE);
-                    tvMensajeError.setText("Ingrese un nombre de usuario.");
-                    etUsuario.requestFocus();
-                    return;
-                }
-                InputMethodManager imm=(InputMethodManager)getSystemService(consContext.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(etUsuario.getWindowToken(),0);
+            llValindando.setVisibility(View.VISIBLE);
+            tvValidando.setText("Verificando registro de usuario...");
+            pbProgreso.setVisibility(View.VISIBLE);
+            btnAceptar.setEnabled(false);
 
-                Log.e("Iniciando", "consulta a servidor");
-                usuario_Async u=new usuario_Async();
-                cod_usr=etUsuario.getText().toString();
-                u.execute(cod_usr,idDispositivo);*/
-                //startActivity(new Intent(consContext,an_acceso.class));
+            String url= "http://www.agroparamonga.com/cap_asistencia";
+            RestAdapter adapter = new RestAdapter.Builder().setEndpoint(url).build();
+            //Creating Rest Services
+            afiliacionIn restInterface = adapter.create(afiliacionIn.class);
+
+            restInterface.validarUsuario("2", constantes.COD_APP,etUsuario.getText().toString(),idDispositivo,  new Callback<List<respuestaEn>>()
+            {
+                @Override
+                public void success(List<respuestaEn> respuestaEns, Response response) {
+                    //datos de la entidad principal respuestaEn
+                    Log.e("modelo","---- propiedades del modelo respuestaEn");
+                    Log.e("estado","" + respuestaEns.get(0).getEstado());
+                    Log.e("mensaje",respuestaEns.get(0).getMensaje());
+                    Log.e("data","tamaño de la lista=" + respuestaEns.get(0).getData().size());
+                    Log.e("totalRegistro","" + respuestaEns.get(0).getTotalRegistro());
+                    pbProgreso.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Log.e("logError",error.getMessage());
+                    tvValidando.setText(error.toString());
+                    llValindando.setVisibility(View.VISIBLE);
+                    pbProgreso.setVisibility(View.GONE);
+                    btnAceptar.setEnabled(true);
+                }
+            });
+
+
+     /*
+
+            Log.e("Iniciando", "consulta a servidor");
+            usuario_Async u=new usuario_Async();
+            cod_usr=etUsuario.getText().toString();
+            u.execute(cod_usr,idDispositivo);*/
+            //startActivity(new Intent(consContext,an_acceso.class));
 
             }
         });
@@ -151,9 +182,9 @@ public class an_login extends Activity {
         }
         protected void onPostExecute(respuestaEn result)
         {
-            Log.e("mensaje respuesta", result.mensaje);
+          //  Log.e("mensaje respuesta", result.mensaje);
 
-            if(result.estado==0){
+           /* if(result.estado==0){
                 llValindando.setVisibility(View.VISIBLE);
                 pbProgreso.setVisibility(View.GONE);
                 btnAceptar.setEnabled(true);
@@ -168,15 +199,15 @@ public class an_login extends Activity {
                 btnAceptar.setEnabled(true);
                 tvValidando.setText(result.mensaje);
                 return;
-            }
+            }*/
 
-            if(result.estado==1){
+            if(result.getEstado()==1){
 
                 Intent i =new Intent(consContext,an_capacitacion_activa.class);
                 String nombre="",origen_alt="",cod_trabajador="";
                 Bundle bUsuario=new Bundle();
                 try {
-                    JSONArray data = new JSONArray(result.data);
+                    JSONArray data = new JSONArray(result.getData());
                     JSONObject json_data= data.getJSONObject(0);
                     nombre = json_data.getString("NOMBRE");
                     origen_alt=json_data.getString("ORIGEN_ALT");

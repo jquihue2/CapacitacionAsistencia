@@ -136,29 +136,29 @@ public class funciones {
             Log.e("data",json_data.getJSONArray("data").toString());
             Log.e("totalRegistro",String.valueOf(json_data.getInt("totalRegistro")));*/
 
-            respuesta.estado=json_data.getInt("estado");
-            respuesta.mensaje=json_data.getString("mensaje");
+            //respuesta.estado=json_data.getInt("estado");
+            //respuesta.mensaje=json_data.getString("mensaje");
             //respuesta.data=json_data.getJSONArray("data").toString();
-            respuesta.totalRegistro=json_data.getInt("totalRegistro");
+            //respuesta.totalRegistro=json_data.getInt("totalRegistro");
         }
         catch (JSONException e)
         {
-            respuesta.estado=3;
-            respuesta.mensaje="Error de formato.";
+            //respuesta.estado=3;
+            //respuesta.mensaje="Error de formato.";
             //respuesta.data="";
-            respuesta.totalRegistro=0;
+            //respuesta.totalRegistro=0;
         }
         catch (java.net.MalformedURLException e) {
-            respuesta.estado=3;
-            respuesta.mensaje="Error de conexión al servidor; vuelva a intentarlo en un momento.";
+            //respuesta.estado=3;
+            //respuesta.mensaje="Error de conexión al servidor; vuelva a intentarlo en un momento.";
             //respuesta.data="";
-            respuesta.totalRegistro=0;
+            //respuesta.totalRegistro=0;
         }
         catch(Exception e){
-            respuesta.estado=3;
-            respuesta.mensaje="Error general de conexión.";
+            //respuesta.estado=3;
+            //respuesta.mensaje="Error general de conexión.";
             //respuesta.data="";
-            respuesta.totalRegistro=0;
+            //respuesta.totalRegistro=0;
         }
         finally {
             if (linkConnection != null) {

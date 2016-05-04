@@ -12,7 +12,7 @@ import retrofit.http.Query;
 /**
  * Created by JUAN JOSE LEDESMA on 30/04/2016.
  */
-public interface UsuarioRepositoryService {
+public interface afiliacionIn {
 
     @GET("/Afiliacion.jsp")
     void validarUsuario(@Query("funcion") String email,

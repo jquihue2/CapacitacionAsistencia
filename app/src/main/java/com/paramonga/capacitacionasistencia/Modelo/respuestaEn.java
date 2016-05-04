@@ -7,10 +7,10 @@ import java.util.List;
  */
 public class respuestaEn {
 
-    public int estado;
-    public String mensaje;
-    public List<Usuario> data;
-    public int totalRegistro;
+    int estado;
+    String mensaje;
+    List<Usuario> data;
+    int totalRegistro;
 
     public respuestaEn() {
         super();
@@ -33,7 +33,7 @@ public class respuestaEn {
         this.mensaje = mensaje;
     }
 
-    public Object getData() {
+    public List<Usuario> getData() {
         return data;
     }
 

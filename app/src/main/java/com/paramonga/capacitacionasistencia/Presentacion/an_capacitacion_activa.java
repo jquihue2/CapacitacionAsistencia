@@ -164,13 +164,13 @@ public class an_capacitacion_activa extends Activity {
         @Override
         protected void onPostExecute(respuestaEn result){
 
-            if(result.totalRegistro>0)
+            if(result.getTotalRegistro()>0)
             {
                 lvLista.setVisibility(View.VISIBLE);
                 llBuscando.setVisibility(View.GONE);
                 btnVolverCargar.setVisibility(View.GONE);
                 try {
-                    JSONArray data = new JSONArray(result.data);
+                    JSONArray data = new JSONArray(result.getData().toString());
                     listaOrdenCompraArray =new ArrayList<>();
                     //listaIncidencia.clear();
                     capacitacion_activaEn item;
@@ -190,14 +190,14 @@ public class an_capacitacion_activa extends Activity {
                     tvTotalRegistros.setText("TOTAL DE CURSOS: " + ordencompraAdaptador.totalRegistros());
                 }
                 catch(JSONException e){
-                    result.estado=0;result.mensaje="Error formato de resultado. " + e.getMessage();
+                   // result.estado=0;result.mensaje="Error formato de resultado. " + e.getMessage();
                 }
             }
-            if(result.estado<1 || result.estado==3){
+            if(result.getEstado()<1 || result.getEstado()==3){
                 lvLista.setVisibility(View.GONE);
                 pbBuscando.setVisibility(View.GONE);
                 llBuscando.setVisibility(View.VISIBLE);
-                tvMensaje.setText(result.mensaje);
+                tvMensaje.setText(result.getMensaje());
                 btnVolverCargar.setVisibility(View.VISIBLE);
             }
         }

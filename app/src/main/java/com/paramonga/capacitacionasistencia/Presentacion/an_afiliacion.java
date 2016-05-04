@@ -159,11 +159,11 @@ public class an_afiliacion extends Activity {
 
         protected void onPostExecute(respuestaEn result){
             pdEspera.dismiss();
-            if (result.totalRegistro>1){
-                funcion.messageBox(consContext,result.mensaje);
+            if (result.getTotalRegistro()>1){
+                funcion.messageBox(consContext,result.getMensaje());
             }
             else{
-                funcion.messageBox(consContext,result.mensaje);
+                funcion.messageBox(consContext,result.getMensaje());
                 btnGenerarsolicitud.setText("Salir");
             }
         }

@@ -232,12 +232,12 @@ public class an_colaborador extends Activity {
         @Override
         protected void onPostExecute(respuestaEn result){
 
-            if(result.totalRegistro>0)
+            if(result.getTotalRegistro()>0)
             {
                 lvLista.setVisibility(View.VISIBLE);
                 llBuscando.setVisibility(View.GONE);
                 try {
-                    JSONArray data = new JSONArray(result.data);
+                    JSONArray data = new JSONArray(result.getData());
                     listaColaboradorArray =new ArrayList<>();
                     //listaIncidencia.clear();
                     colaboradorEn item;
@@ -256,18 +256,18 @@ public class an_colaborador extends Activity {
                     tvTotalRegistros.setText("TOTAL DE PARTICIPANTES: " + colaboradoresAdaptador.totalRegistros());
                 }
                 catch(JSONException e){
-                    result.estado=0;result.mensaje="Error formato de resultado. " + e.getMessage();
+                    //result.estado=0;result.mensaje="Error formato de resultado. " + e.getMessage();
                 }
             }
-            if(result.estado<1 || result.estado==3){
+            if(result.getEstado()<1 || result.getEstado()==3){
                 lvLista.setVisibility(View.GONE);
                 pbBuscando.setVisibility(View.GONE);
                 llBuscando.setVisibility(View.VISIBLE);
-                tvMensaje.setText(result.mensaje);
+                tvMensaje.setText(result.getMensaje());
                 btnVolverCargar.setVisibility(View.VISIBLE);
             }
 
-            Log.e("msg", String.valueOf(result.estado) + " x" +  result.mensaje);
+            //Log.e("msg", String.valueOf(result.estado) + " x" +  result.mensaje);
         }
     }
     @Override
@@ -332,7 +332,7 @@ public class an_colaborador extends Activity {
         protected void onPostExecute(respuestaEn respuestaEn) {
             super.onPostExecute(respuestaEn);
             pd.dismiss();
-            if(respuestaEn.totalRegistro != 1){
+           /* if(respuestaEn.totalRegistro != 1){
                 funcion.messageBox(consContext,"Asistencia",respuestaEn.mensaje);
             }
             if(respuestaEn.estado==0){
@@ -352,7 +352,7 @@ public class an_colaborador extends Activity {
                 colaboradoresAdaptador.actualizarAsistencia(itemSeleccionado);
                 tvTotalMarcados.setText("Marcados: " + colaboradoresAdaptador.totalMarcado());
                 llMensajeError.setVisibility(View.GONE);
-            }
+            }*/
 
         }
     }
